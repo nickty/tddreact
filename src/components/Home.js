@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const [homesState, setHomeState] = useState([]);
+
   useEffect(() => {
     const homesDataPromise = Promise.resolve([
       {
@@ -36,13 +37,15 @@ const Home = () => {
       },
     ]);
     homesDataPromise.then((homesData) => setHomeState(homesData));
-  });
+  }, []);
 
   let homes;
 
-  homes = homesState.map((home) => {
-    <div data-testid="home">Home!</div>;
-  });
+  homes = homesState.map((home, index) => (
+    <div key={index} data-testid="home">
+      Home!
+    </div>
+  ));
 
   // console.log("home", homes);
   return <div>{homes}</div>;
